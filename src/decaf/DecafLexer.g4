@@ -17,21 +17,26 @@ tokens
 LCURLY : '{';
 RCURLY : '}';
 
-ID  :
-  ('a'..'z' | 'A'..'Z')+;
-
 
 WS_ : (' ' | '\n' ) -> skip;
 
 SL_COMMENT : '//' (~'\n')* '\n' -> skip;
 
-CHAR :'\'' (ID2|ESC) '\'';
-STRING : '"' (ID|ESC)* '"';
+ID : (ALFAB|'_')(ALFAB|NUM|'_')+;
+
+CHAR :'\'' (ESC|ALFAB|NUM) '\'';
+
+STRING : '"' (ALFAB|NUM|ESPECIAL)+ '"';
 
 fragment
 ESC :  '\\' ('n'|'t'|'\\'|'"');
 
-ID2 :  ('a'..'z' | 'A'..'Z'| '0'..'9');
+fragment
+ALFAB :  ('a'..'z' | 'A'..'Z');
 
+fragment
+NUM : ('0'..'9');
 
-
+fragment
+ESPECIAL: (' '|'!'|'"'|'#'|'$'|'%'|'&'|'\\\''|'('|')'|'*'|'+'|','|'-'|'.'|'/'|':'|';'|'<'|'='|'>'|'?'|'@'|
+'['|']'|'^'|'_'|'´'|'`'|'{'|'|'|'}'|'~'|'\t'|'\\'|'\"');
