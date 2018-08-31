@@ -40,6 +40,12 @@ class Main {
 						case DecafLexer.ID:
 							type = "IDENTFIER";
 							break;
+						case DecafLexer.INT:
+							type = " INTLITERAL";
+							break;
+						case DecafLexer.OP:
+							type = "";
+							break;
 		        			}
 		        			System.out.println (token.getLine() + type + " " + text);
 		        		}
