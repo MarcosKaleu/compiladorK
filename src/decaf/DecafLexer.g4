@@ -22,7 +22,7 @@ WS_ : (' ' | '\n' ) -> skip;
 
 SL_COMMENT : '//' (~'\n')* '\n' -> skip;
 
-ID : (ALFAB|'_')(ALFAB|NUM|'_')+;
+ID : (ALFAB|'_')+;
 
 CHAR :'\'' (ESC|ALFAB|NUM) '\'';
 
