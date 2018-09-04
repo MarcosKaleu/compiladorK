@@ -17,16 +17,19 @@ tokens
 LCURLY : '{';
 RCURLY : '}';
 
+RESERVADOS : ('if'|'boolean'|'callout'|'class'|'else'|'int'|'return'|'void'|'for'|'break'|'continue');
 
-WS_ : (' ' | '\n' ) -> skip;
+BOOLEAN : ('true'|'false');
 
-SL_COMMENT : '//' (~'\n')* '\n' -> skip;
-
-ID : (ALFAB|'_')+;
+ID : (ALFAB|'_'|'_'NUM*)+;
 
 CHAR :'\'' (ESC|ALFAB|NUM) '\'';
 
 STRING : '"' (ALFAB|NUM|ESPECIAL)+ '"';
+
+WS_ : (' ' | '\n' ) -> skip;
+
+SL_COMMENT : '//' (~'\n')* '\n' -> skip;
 
 INT : (NUM)+;
 
@@ -44,4 +47,3 @@ NUM : ('0'..'9');
 fragment
 ESPECIAL: (' '|'!'|'"'|'#'|'$'|'%'|'&'|'\\\''|'('|')'|'*'|'+'|','|'-'|'.'|'/'|':'|';'|'<'|'='|'>'|'?'|'@'|
 '['|']'|'^'|'_'|'´'|'`'|'{'|'|'|'}'|'~'|'\t'|'\\'|'\"');
-
