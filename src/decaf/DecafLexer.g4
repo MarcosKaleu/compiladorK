@@ -11,8 +11,19 @@ options
 
 tokens
 {
-  TK_class
+TK_class
 }
+
+IF:'if';
+CALLOUT:'callout';
+CLASS:'class';
+ELSE:'else';
+RETURN:'return';
+VOID:'void';
+FOR:'for';
+BREAK:'break';
+CONTINUE:'continue';
+PROGRAM:'Program';
 
 LCURLY : '{';
 RCURLY : '}';
@@ -21,29 +32,23 @@ MAIS:'+';
 MENOS:'-';
 VEZES:'*';
 DIVID:'/';
-
 MENOR:'<';
 MENORIGUAL:'<=';
 MAIOR:'>';
 MAIORIGUAL:'>=';
 DIFERENTE:'!=';
 IGUALIGUAL:'==';
-
 IGUAL: '=';
-
 E:'&&';
 OU:'||';
-
 LCOLC:'[';
 RCOLC:']';
 LPAREN:'(';
 RPAREN:')';
-
 VIRGULA : ',';
 DOISPONTOS: ':';
 PONTVIRGULA : ';';
 
-RESERVADOS : ('if'|'boolean'|'callout'|'class'|'else'|'int'|'return'|'void'|'for'|'break'|'continue');
 
 BOOLEAN : ('true'|'false');
 
