@@ -46,7 +46,7 @@ class Main {
                         case DecafLexer.ID:
                             type = " IDENTFIER ";
                             break;
-                        case DecafLexer.BOOLEAN:
+                        case DecafLexer.TRUEFLASE:
                             type = " BOOLEANLITERAL";
                             break;
                         case DecafLexer.CHAR:
@@ -55,7 +55,7 @@ class Main {
                         case DecafLexer.STRING:
                             type = " STRINGLITERAL";
                             break;
-                        case DecafLexer.INT:
+                        case DecafLexer.NUMERO:
                             type = " INTLITERAL";
                             break;
                             }

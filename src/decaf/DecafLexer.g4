@@ -16,6 +16,7 @@ TK_class
 
 IF:'if';
 CALLOUT:'callout';
+TRUEFLASE : ('true'|'false');
 CLASS:'class';
 ELSE:'else';
 RETURN:'return';
@@ -24,6 +25,9 @@ FOR:'for';
 BREAK:'break';
 CONTINUE:'continue';
 PROGRAM:'Program';
+BOOLEAN:'boolean';
+INT: 'int';
+
 
 LCURLY : '{';
 RCURLY : '}';
@@ -50,7 +54,7 @@ DOISPONTOS: ':';
 PONTVIRGULA : ';';
 
 
-BOOLEAN : ('true'|'false');
+
 
 ID : (ALFAB+NUM*|'_'|'_'NUM*)+;
 
@@ -63,7 +67,7 @@ WS_ : (' ' | '\n' | '\t') -> skip;
 
 SL_COMMENT : '//' (~'\n')* '\n' -> skip;
 
-INT : (NUM)+;
+NUMERO : (NUM)+;
 
 HEX : INIHEX (NUM|ALFAB)+;
 
