@@ -54,8 +54,6 @@ DOISPONTOS: ':';
 PONTVIRGULA : ';';
 
 
-
-
 ID : (ALFAB+NUM*|'_'|'_'NUM*)+;
 
 CHAR :'\'' (ESC|ALFAB|NUM) '\'';
