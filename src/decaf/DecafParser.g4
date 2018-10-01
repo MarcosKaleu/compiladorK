@@ -10,19 +10,63 @@ options
   tokenVocab=DecafLexer;
 }
 
-program: CLASS PROGRAM LCURLY [(declaracao)* (metod_decl)*] RCURLY;
+program: CLASS PROGRAM LCURLY field_decl* method_decl* RCURLY;
 
-declaracao: {tipo variavel | tipo variavel LCOLC inteiro RCOLC}+VIRGULA PONTVIRGULA;
+field_decl: ( type id | type id LCOLC int_literal RCOLC )* PONTVIRGULA;
 
-metod_decl: {tipo | VOID} variavel LPAREN | {tipo variavel}+VIRGULA| RPAREN block;
+method_decl: (type | VOID) id LPAREN  (type id(VIRGULA type id)*)*  RPAREN block;
 
-block: LCURLY (var)* (statement)* RCURLY
+block: LCURLY (var)* (statement)* RCURLY;
 
-statement: local assinatura_op expr PONTVIRGULA | metod_call PONTVIRGULA | IF LPAREN expr RPAREN block [ELSE block] |FOR variavel IGUAL expr VIRGULA expr block | RETURN [expr] PONTVIRGULA | BREAK PONTVIRGULA | CONTINUE PONTVIRGULA | block;
+type: INT|BOOLEAN;
 
-var: (tipo variavel)+VIRGULA PONTVIRGULA;
+statement: location assign_op expr PONTVIRGULA | method_call PONTVIRGULA | IF LPAREN expr RPAREN block (ELSE block)? |FOR id IGUAL expr PONTVIRGULA expr block | RETURN expr PONTVIRGULA | BREAK PONTVIRGULA | CONTINUE PONTVIRGULA | block;
 
-tipo: INT|BOOLEAN;
+assign_op: IGUAL|MAISIGUAL|MENOSIGUAL;
 
-variavel: ALFAB| (ALFAB NUM)*;
+method_call: method_name LPAREN (expr(VIRGULA expr)*)? RPAREN | CALLOUT LPAREN string_literal  (VIRGULA callout_arg(VIRGULA callout_arg)*)? RPAREN;
+
+method_name: id;
+
+location: id | id LCOLC expr RCOLC;
+
+expr: location | method_call | literal | expr bin_op expr | MENOS expr | EXCLAMACAO expr | LPAREN expr RPAREN;
+
+callout_arg: expr | string_literal;
+
+bin_op: arith_op | rel_op | eq_op | cond_op;
+
+arith_op: MAIS | MENOS | VEZES | DIVID | PERCENT;
+
+rel_op: MENOR | MAIOR | MENORIGUAL | MAIORIGUAL;
+
+eq_op: IGUALIGUAL | DIFERENTE;
+
+cond_op: E | OU;
+
+literal: int_literal | char_literal | bool_literal;
+
+id: ID;
+
+alpha_num: alpha | digit;
+
+alpha: LETRAS;
+
+digit: NUMERO;
+
+hex_literal: HEX;
+
+bool_literal: TRUEFLASE;
+
+char_literal: CHAR;
+
+string_literal: STRING;
+
+int_literal: decimal_literal | hex_literal;
+
+decimal_literal: digit digit*;
+
+var: (type id)* PONTVIRGULA;
+
+
 

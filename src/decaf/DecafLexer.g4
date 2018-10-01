@@ -52,6 +52,10 @@ RPAREN:')';
 VIRGULA : ',';
 DOISPONTOS: ':';
 PONTVIRGULA : ';';
+MAISIGUAL : '+=';
+MENOSIGUAL : '-=';
+EXCLAMACAO : '!';
+PERCENT: '%';
 
 
 ID : (ALFAB+NUM*|'_'|'_'NUM*)+;
@@ -69,6 +73,8 @@ NUMERO : (NUM)+;
 
 HEX : INIHEX (NUM|ALFAB)+;
 
+LETRAS: ALFAB;
+
 
 fragment
 ESC :  '\\' ('n'|'t'|'\\'|'"');
@@ -80,8 +86,7 @@ fragment
 NUM : ('0'..'9');
 
 fragment
-ESPECIAL: (' '|'!'|'"'|'#'|'$'|'%'|'&'|'\\\''|'('|')'|'*'|'+'|','|'-'|'.'|'/'|':'|';'|'<'|'='|'>'|'?'|'@'|'['|']'|'^'|'_'
-|'´'|'`'|'{'|'|'|'}'|'~'|'\t'|'\\'|'\"');
+ESPECIAL: (' '|'"'|'#'|'$'|'&'|'\\\''|'.'|'?'|'@'|'^'|'_'|'´'|'`'|'|'|'~'|'\t'|'\\'|'\"');
 
 fragment
 INIHEX: '0x';
