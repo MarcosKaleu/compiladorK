@@ -27,6 +27,7 @@ CONTINUE:'continue';
 PROGRAM:'Program';
 BOOLEAN:'boolean';
 INT: 'int';
+FORPAR: 'forpar';
 
 
 LCURLY : '{';
@@ -86,7 +87,7 @@ fragment
 NUM : ('0'..'9');
 
 fragment
-ESPECIAL: (' '|'"'|'#'|'$'|'&'|'\\\''|'.'|'?'|'@'|'^'|'_'|'´'|'`'|'|'|'~'|'\t'|'\\'|'\"');
+ESPECIAL: (' '|'#'|'$'|'&'|'\\\''|'.'|'?'|'@'|'^'|'_'|'´'|'`'|'|'|'~'|'\t'|'\\'|'\"');
 
 fragment
 INIHEX: '0x';

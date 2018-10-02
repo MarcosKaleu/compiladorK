@@ -14,13 +14,13 @@ program: CLASS PROGRAM LCURLY field_decl* method_decl* RCURLY;
 
 field_decl: ( type id | type id LCOLC int_literal RCOLC )* PONTVIRGULA;
 
-method_decl: (type | VOID) id LPAREN  (type id(VIRGULA type id)*)*  RPAREN block;
+method_decl: (type | VOID) id LPAREN (type id (VIRGULA type id)*)*  RPAREN block;
 
 block: LCURLY (var)* (statement)* RCURLY;
 
-type: INT|BOOLEAN;
+type: INT|BOOLEAN|FORPAR;
 
-statement: location assign_op expr PONTVIRGULA | method_call PONTVIRGULA | IF LPAREN expr RPAREN block (ELSE block)? |FOR id IGUAL expr PONTVIRGULA expr block | RETURN expr PONTVIRGULA | BREAK PONTVIRGULA | CONTINUE PONTVIRGULA | block;
+statement: location assign_op expr PONTVIRGULA | method_call PONTVIRGULA | IF LPAREN expr RPAREN block (ELSE block)? |FOR id IGUAL expr VIRGULA expr block | RETURN expr PONTVIRGULA | BREAK PONTVIRGULA | CONTINUE PONTVIRGULA | block;
 
 assign_op: IGUAL|MAISIGUAL|MENOSIGUAL;
 
@@ -36,7 +36,7 @@ callout_arg: expr | string_literal;
 
 bin_op: arith_op | rel_op | eq_op | cond_op;
 
-arith_op: MAIS | MENOS | VEZES | DIVID | PERCENT;
+arith_op: MAIS | MENOS | VEZES | PERCENT | DIVID;
 
 rel_op: MENOR | MAIOR | MENORIGUAL | MAIORIGUAL;
 
@@ -66,7 +66,4 @@ int_literal: decimal_literal | hex_literal;
 
 decimal_literal: digit digit*;
 
-var: (type id)* PONTVIRGULA;
-
-
-
+var: (type id(VIRGULA)*)* PONTVIRGULA;
