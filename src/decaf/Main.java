@@ -43,6 +43,9 @@ class Main {
                         case DecafLexer.HEX:
                             type = " INTLITERAL";
                             break;
+                        case DecafLexer.STRING:
+                            type = " STRINGLITERAL";
+                            break;
                         case DecafLexer.ID:
                             type = " IDENTFIER ";
                             break;
@@ -51,9 +54,6 @@ class Main {
                             break;
                         case DecafLexer.CHAR:
                             type = " CHARLITERAL";
-                            break;
-                        case DecafLexer.STRING:
-                            type = " STRINGLITERAL";
                             break;
                         case DecafLexer.NUMERO:
                             type = " INTLITERAL";

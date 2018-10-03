@@ -27,7 +27,6 @@ CONTINUE:'continue';
 PROGRAM:'Program';
 BOOLEAN:'boolean';
 INT: 'int';
-FORPAR: 'forpar';
 
 
 LCURLY : '{';
@@ -59,11 +58,11 @@ EXCLAMACAO : '!';
 PERCENT: '%';
 
 
+STRING : '"' (ALFAB|NUM|ESPECIAL)+ '"';
+
 ID : (ALFAB+NUM*|'_'|'_'NUM*)+;
 
 CHAR :'\'' (ESC|ALFAB|NUM) '\'';
-
-STRING : '"' (ALFAB|NUM|ESPECIAL)+ '"';
 
 
 WS_ : (' ' | '\n' | '\t') -> skip;
@@ -87,7 +86,7 @@ fragment
 NUM : ('0'..'9');
 
 fragment
-ESPECIAL: (' '|'#'|'$'|'&'|'\\\''|'.'|'?'|'@'|'^'|'_'|'´'|'`'|'|'|'~'|'\t'|'\\'|'\"');
+ESPECIAL: (' '|'!'|'"'|'#'|'$'|'%'|'&'|'\\\''|'('|')'|'*'|'+'|','|'-'|'.'|'/'|':'|';'|'<'|'='|'>'|'?'|'@'|'['|']'|'^'|'_'|'´'|'`'|'{'|'|'|'}'|'~'|'\t'|'\\'|'\"');
 
 fragment
 INIHEX: '0x';
