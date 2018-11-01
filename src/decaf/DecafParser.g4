@@ -13,15 +13,15 @@ options
 program: CLASS PROGRAM LCURLY field_decl* method_decl* RCURLY;
 
 tipo_method: type ID;
-field_decl: ( tipo_method | tipo_method LCOLC int_literal RCOLC )* 
-		(VIRGULA (tipo_method| tipo_method LCOLC int_literal RCOLC))* PONTVIRGULA;
+
+field_decl: (tipo_method (VIRGULA tipo_method)* | tipo_method LCOLC int_literal RCOLC (VIRGULA tipo_method LCOLC int_literal RCOLC)*) PONTVIRGULA;
 
 
 assinatura_method: tipo_method (VIRGULA tipo_method)*;
 
 retorno_method: type|VOID ID;
 
-method_decl: retorno_method LPAREN (assinatura_method)* RPAREN block;
+method_decl: (type | VOID) ID LPAREN (tipo_method(VIRGULA tipo_method)*)? RPAREN block;
 
 block: LCURLY (var)* (statement)* RCURLY;
 
@@ -33,7 +33,7 @@ assign_op: IGUAL|MAISIGUAL|MENOSIGUAL;
 
 method_call: ID LPAREN (expr(VIRGULA expr)*)? RPAREN | CALLOUT LPAREN string_literal  (VIRGULA callout_arg(VIRGULA callout_arg)*)? RPAREN;
 
-method_name: ID;
+
 
 location: ID | ID LCOLC expr RCOLC;
 
@@ -73,4 +73,4 @@ int_literal: decimal_literal | hex_literal;
 
 decimal_literal: digit digit*;
 
-var: (tipo_method)* PONTVIRGULA;
+var: tipo_method(VIRGULA ID)* PONTVIRGULA;

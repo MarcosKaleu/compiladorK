@@ -32,9 +32,9 @@ public class DecafSymbolsAndScopes extends DecafParserBaseListener {
 
     @Override
     public void enterRetorno_method(DecafParser.Retorno_methodContext ctx) {
-        String name = ctx.ID().getText();
-        int typeTokenType = ctx.type().start.getType();
-        DecafSymbol.Type type = this.getType(typeTokenType);
+        String name = ctx.id().getText();
+       // int typeTokenType = ctx.type().start.getType();
+        //DecafSymbol.Type type = this.getType(typeTokenType);
 
         // push new scope by making new one that points to enclosing scope
         FunctionSymbol function = new FunctionSymbol(name);
@@ -64,29 +64,33 @@ public class DecafSymbolsAndScopes extends DecafParserBaseListener {
 
     @Override
     public void enterField_decl(DecafParser.Field_declContext ctx) {
-        defineVar(ctx.type(), ctx.ID().get(0).getSymbol());
+        /*for (int i; i< ctx.id().size();i++){
+		defineVar(ctx.type(), ctx.id().get(i).getSymbol());
+	}*/
     }
 
     @Override
     public void exitField_decl(DecafParser.Field_declContext ctx) {
-        String name = ctx.ID().getSymbol().getText();
+		/* for (int i; i< ctx.id().size();i++){       
+	 String name = ctx.id().get(i).getSymbol().getText();
         Symbol var = currentScope.resolve(name);
         if ( var==null ) {
-            this.error(ctx.ID().get(0).getSymbol(), "no such variable: "+name);
+            this.error(ctx.id().get(i).getSymbol(), "no such variable: "+name);
         }
         if ( var instanceof FunctionSymbol ) {
-            this.error(ctx.ID().get(0).getSymbol(), name+" is not a variable");
-        }
+            this.error(ctx.id().get(i).getSymbol(), name+" is not a variable");
+		}
+        }*/
     }
 
   void defineVar(DecafParser.TypeContext typeCtx, Token nameToken) {
-        int typeTokenType = typeCtx.start.getType();
+        /*int typeTokenType = typeCtx.start.getType();
         VariableSymbol var = new VariableSymbol(nameToken.getText());
 
         // DecafSymbol.Type type = this.getType(typeTokenType);
         // var.setType(type);
 
-        currentScope.define(var); // Define symbol in current scope
+        currentScope.define(var); // Define symbol in current scope*/
     }
 
 
