@@ -80,6 +80,12 @@ public class DecafSymbolsAndScopes extends DecafParserBaseListener {
         
     }
 
+	@Override 
+	public void enterVar(DecafParser.VarContext ctx) {
+	for(int i=0;i<ctx.ID().size();i++){
+	defineVar(ctx.tipo_method().type(), ctx.ID(i).getSymbol());}
+ }
+
   void defineVar(DecafParser.TypeContext typeCtx, Token nameToken) {
         //int typeTokenType = typeCtx.start.getType();
         VariableSymbol var = new VariableSymbol(nameToken.getText());
