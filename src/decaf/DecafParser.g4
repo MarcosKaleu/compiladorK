@@ -73,4 +73,4 @@ int_literal: decimal_literal | hex_literal;
 
 decimal_literal: digit digit*;
 
-var: tipo_method(VIRGULA ID)* PONTVIRGULA;
+var: type ID(VIRGULA ID)* PONTVIRGULA;

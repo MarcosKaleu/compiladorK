@@ -1,4 +1,5 @@
 package decaf;
+import java.util.ArrayList;
 import org.antlr.symtab.FunctionSymbol;
 import org.antlr.symtab.GlobalScope;
 import org.antlr.symtab.LocalScope;
@@ -15,9 +16,11 @@ import org.antlr.v4.runtime.tree.ParseTreeProperty;
  * This class defines basic symbols and scopes for Decaf language
  */
 public class DecafSymbolsAndScopes extends DecafParserBaseListener {
+	ArrayList<String> listavariaveis = new ArrayList();
     ParseTreeProperty<Scope> scopes = new ParseTreeProperty<Scope>();
     GlobalScope globals;
     Scope currentScope; // define symbols in this scope
+	String nois = "vazio";
 
     @Override
     public void enterProgram(DecafParser.ProgramContext ctx) {
@@ -79,11 +82,27 @@ public class DecafSymbolsAndScopes extends DecafParserBaseListener {
 		}
         
     }
+	@Override public void enterStatement(DecafParser.StatementContext ctx) { }
+
+	@Override public void exitStatement(DecafParser.StatementContext ctx) {
+	if(listavariaveis.contains(nois) == false){
+            error(ctx.location().ID().getSymbol(), "Variável não declarada");
+        }
+	 }
 
 	@Override 
 	public void enterVar(DecafParser.VarContext ctx) {
 	for(int i=0;i<ctx.ID().size();i++){
-	defineVar(ctx.tipo_method().type(), ctx.ID(i).getSymbol());}
+	nois = ctx.ID(i).getSymbol().getText();
+	if(listavariaveis.contains(nois)== true){
+	error(ctx.ID(i).getSymbol(), "variavel com nome duplicado");
+	System.exit(0);
+	}
+	else{
+	   listavariaveis.add(nois);
+	   defineVar(ctx.type(), ctx.ID(i).getSymbol());
+		}
+	}
  }
 
   void defineVar(DecafParser.TypeContext typeCtx, Token nameToken) {
