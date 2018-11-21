@@ -17,6 +17,7 @@ import org.antlr.v4.runtime.tree.ParseTreeProperty;
  */
 public class DecafSymbolsAndScopes extends DecafParserBaseListener {
 	ArrayList<String> listavariaveis = new ArrayList();
+	ArrayList<String> metodo = new ArrayList();
     ParseTreeProperty<Scope> scopes = new ParseTreeProperty<Scope>();
     GlobalScope globals;
     Scope currentScope; // define symbols in this scope
@@ -30,6 +31,9 @@ public class DecafSymbolsAndScopes extends DecafParserBaseListener {
 
     @Override
     public void exitProgram(DecafParser.ProgramContext ctx) {
+	if(metodo.contains("main") == false){
+            error(ctx.CLASS().getSymbol(), "Classe sem método main");
+        }
         System.out.println(globals);
     }
 
@@ -50,6 +54,7 @@ public class DecafSymbolsAndScopes extends DecafParserBaseListener {
 
     @Override
    public void exitMethod_decl(DecafParser.Method_declContext ctx) {
+	metodo.add(ctx.ID().getSymbol().getText());
         popScope();
     }
 
@@ -64,6 +69,12 @@ public class DecafSymbolsAndScopes extends DecafParserBaseListener {
     public void exitBlock(DecafParser.BlockContext ctx) {
         popScope();
     }
+
+	@Override public void enterField_decl(DecafParser.Field_declContext ctx) { }
+
+	@Override public void exitField_decl(DecafParser.Field_declContext ctx) {
+	
+	 }
 
     @Override
     public void enterTipo_method(DecafParser.Tipo_methodContext ctx) {
